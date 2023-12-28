@@ -21,7 +21,7 @@ class Gliederung(Slide):
     def construct(self):
         title = Text("Gliederung", font_size=28).move_to(UL)
         subtitle1 = Text("Gliederung", font_size=16)
-               
+        self.play(Write(title), Write(subtitle1))      
 
 
 class WithTeX(Slide):

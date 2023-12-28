@@ -1,1 +1,2 @@
 manim_slides[manim]==5.0.0
+manim

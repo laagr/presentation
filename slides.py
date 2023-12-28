@@ -1,7 +1,7 @@
 from manim import *
 from manim_slides import Slide
 
-class Titel(Scene):
+class Titel(Slide):
     def construct(self):
         title = Text("die Eulersche Zahl", font_size=40)
         subtitle = Text("Richard Laag", font_size=12).next_to(title, DOWN)

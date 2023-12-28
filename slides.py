@@ -7,8 +7,6 @@ class Titel(Scene):
         subtitle = Text("Richard Laag", font_size=12).next_to(title, DOWN)
 
         self.play(Write(title), Write(subtitle))
-        self.next_slide()
-        self.play(FadeOut(title), FadeOut(subtitle))
 
 class Intro(Slide):
     def construct(self):
@@ -17,7 +15,6 @@ class Intro(Slide):
         e_tex.generate_target()
         e_tex.target.shift(5 * LEFT - e_tex.get_right())
         self.play(MoveToTarget(e_tex), run_time=200, rate_func=linear)        
-        self.next_slide()
         self.play(FadeOut(e_tex))
 
 class Gliederung(Slide):

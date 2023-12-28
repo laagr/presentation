@@ -14,7 +14,7 @@ class Intro(Slide):
         e_tex.next_to(ORIGIN, RIGHT)
         e_tex.generate_target()
         e_tex.target.shift(5 * LEFT - e_tex.get_right())
-        self.play(MoveToTarget(e_tex), run_time=15, rate_func=linear)        
+        self.play(MoveToTarget(e_tex), run_time=5, rate_func=linear)        
         self.play(FadeOut(e_tex))
 
 class Gliederung(Slide):

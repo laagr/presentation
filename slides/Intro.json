@@ -1,8 +1,14 @@
 {
   "slides": [
     {
-      "file": "slides/files/Intro/7ef554020eec10dd4d9cb09d42350579971a9de4eb42d31daf2b3c98973f53ac.mp4",
-      "rev_file": "slides/files/Intro/7ef554020eec10dd4d9cb09d42350579971a9de4eb42d31daf2b3c98973f53ac_reversed.mp4",
+      "file": "slides/files/Intro/77642048fe7b964ab216ae2c7fcd72df7c44121fa95f8adef5638ce176110123.mp4",
+      "rev_file": "slides/files/Intro/77642048fe7b964ab216ae2c7fcd72df7c44121fa95f8adef5638ce176110123_reversed.mp4",
+      "loop": false,
+      "auto_next": false
+    },
+    {
+      "file": "slides/files/Intro/b8b207369637c3f4b02f3b032a35fa95750fa668ca54adf58b9a653e48ae8e41.mp4",
+      "rev_file": "slides/files/Intro/b8b207369637c3f4b02f3b032a35fa95750fa668ca54adf58b9a653e48ae8e41_reversed.mp4",
       "loop": false,
       "auto_next": false
     }

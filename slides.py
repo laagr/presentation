@@ -72,7 +72,57 @@ class Python(Slide):
     def construct(self):
         title = Tex("Python").scale(1.5).to_corner(UP)
         self.play(Write(title), run_time = 1)
-        self.wait(1)
+        self.next_slide()
+
+        code = Code(
+        code="""
+    # Variabeln
+    x = 0
+    a = [0,2]
+    n = smallest_factn_k_digits(precision)
+    while n: 
+        a.append(1)
+        n = n - 1
+    i = a.__len__()
+    out = ""
+    file1 = open("output-tropf.txt", "w")
+
+    # Loop
+    while i > 0:
+        n = i 
+        i = i - 1
+        while n > 1:
+            n = n - 1
+            a[n] = x % n
+            x = 10 * a[n - 1] + x // n
+        out = out + str(x)
+
+    file1.write(out)
+    file1.close()
+
+""",
+                    language ="python",
+                )
+
+        less_code = Code(
+        code ="""
+    # Loop
+    while i > 0:
+        n = i 
+        i = i - 1
+        while n > 1:
+            n = n - 1
+            a[n] = x % n
+            x = 10 * a[n - 1] + x // n
+        out = out + str(x)
+""",
+                    language ="python",
+                )
+
+        self.wipe(title, code)
+        self.next_slide()
+        self.play(Transform(code, less_code))
+        
 
 class WithTeX(Slide):
     def construct(self):

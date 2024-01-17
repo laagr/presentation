@@ -1,0 +1,15 @@
+{
+  "slides": [
+    {
+      "file": "slides/files/Gliederung/990a75365650e2f228e927c8d8b56846da62253fba2898b1748a65c07847204c.mp4",
+      "rev_file": "slides/files/Gliederung/990a75365650e2f228e927c8d8b56846da62253fba2898b1748a65c07847204c_reversed.mp4",
+      "loop": false,
+      "auto_next": false
+    }
+  ],
+  "resolution": [
+    1920,
+    1080
+  ],
+  "background_color": "black"
+}

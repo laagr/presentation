@@ -3,7 +3,7 @@ from manim_slides import Slide
 
 class Titel(Slide):
     def construct(self):
-        title = Text("die Eulersche Zahl", font_size=40)
+        title = Text("Die Eulersche Zahl", font_size=40)
         subtitle = Text("Richard Laag", font_size=12).next_to(title, DOWN)
 
         self.play(Write(title), Write(subtitle))
@@ -14,15 +14,57 @@ class Intro(Slide):
         e_tex.next_to(ORIGIN, RIGHT)
         e_tex.generate_target()
         e_tex.target.shift(5 * LEFT - e_tex.get_right())
-        self.play(MoveToTarget(e_tex), run_time=5, rate_func=linear)        
-        self.play(FadeOut(e_tex))
+        self.play(MoveToTarget(e_tex), run_time=5, rate_func=linear)
 
 class Gliederung(Slide):
     def construct(self):
-        title = Text("Gliederung", font_size=28).move_to(UL)
-        subtitle1 = Text("Gliederung", font_size=16)
-        self.play(Write(title), Write(subtitle1))      
+        title = Tex("Gliederung").scale(1.5).to_corner(UP)
+        self.play(Write(title), run_time = 1)
+        self.wait(1)
+        subtitle1 = Text("1.Näherungen", font_size=20)
+        subtitle2 = Text("2.Eigenschaften von e", font_size=20).align_to(subtitle1, LEFT).shift(DOWN * 0.5)
+        subtitle3 = Text("3.Der Tröpfelalgorithmus\n    3.1.Python", font_size=20).align_to(subtitle2, LEFT).shift(DOWN)
+        subtitle4 = Text("4.Zusammenfassung ", font_size=20).align_to(subtitle3, LEFT).shift(DOWN * 1.5)
+        self.play(FadeIn(subtitle1), FadeIn(subtitle2), FadeIn(subtitle3), FadeIn(subtitle4))
 
+class Naeherungen(Slide):
+    def construct(self):
+        title = Tex("Näherungen").scale(1.5).to_corner(UP)
+        self.play(Write(title), run_time = 1)
+        self.wait(1)
+
+class Eigenschaften(Slide):
+    def construct(self):
+        title = Tex("Eigenschaften").scale(1.5).to_corner(UP)
+        self.play(Write(title), run_time = 1)
+        self.wait(1)
+
+class Tropf(Slide):
+    def construct(self):
+        title = Tex("Der Tröfelalgorithmus").scale(1.5).to_corner(UP)
+        self.play(Write(title), run_time = 1)
+        self.wait(1)
+        table = Tex(r"""
+        \def\arraystretch{1.2}
+\begin{tabular}{l|l|l|l|l}
+  & 2 & 3 & 4 & 5 \\ \hline
+2 & 1 & 1 & 1 & 1 \\
+  &   &   &   &   \\
+  &   &   &   &  
+\end{tabular}""")
+                       
+        
+        self.play(FadeIn(table))
+        self.next_slide()
+        self.play(ReplacementTransform(table[0][17], Tex(r"10").align_to(table[0][17], UL)))
+        self.wait()
+
+
+class Python(Slide):
+    def construct(self):
+        title = Tex("Python").scale(1.5).to_corner(UP)
+        self.play(Write(title), run_time = 1)
+        self.wait(1)
 
 class WithTeX(Slide):
     def construct(self):

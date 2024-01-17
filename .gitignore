@@ -1,5 +1,4 @@
-media/
+/media/
 secret.txt
-venv/
-
-__pycache__/
+/venv/
+/__pycache__/

@@ -4,9 +4,13 @@ from manim_slides import Slide
 class Titel(Slide):
     def construct(self):
         title = Text("Die Eulersche Zahl", font_size=40)
-        subtitle = Text("Richard Laag", font_size=12).next_to(title, DOWN)
+        title.set_color_by_gradient(ORANGE, YELLOW)
+        subtitle = Text("Richard Laag", font_size=20).next_to(title, DOWN)
+        icon = SVGMobject(f"~/presentation/link.svg").next_to(title, DOWN * 3 + LEFT)
+        link = Text("https://laagr.github.io/presentation", font_size = 20).set_color(BLUE).next_to(icon, RIGHT)
 
         self.play(Write(title), Write(subtitle))
+        self.play(DrawBorderThenFill(icon), Write(link))
 
 class Intro(Slide):
     def construct(self):
@@ -15,56 +19,52 @@ class Intro(Slide):
         e_tex.generate_target()
         e_tex.target.shift(RIGHT * 8 - e_tex.get_right())
 
-        self.play(MoveToTarget(e_tex), run_time=30, rate_func=rate_functions.ease_out_sine)
-
-        self.next_slide()
-
-        e_tex.generate_target()
-        e_tex.target.shift(UP * 8)
-
-        self.play(MoveToTarget(e_tex), run_time=1.5)
+        self.play(MoveToTarget(e_tex), run_time=30, rate_func=rate_functions.ease_in_out_sine)
 
 class Gliederung(Slide):
     def construct(self):
-        title = Tex("Gliederung").scale(1.5).to_corner(UP)
-        self.play(Write(title), run_time = 1)
-        self.wait(1)
-        subtitle1 = Text("1.Näherungen", font_size=20)
-        subtitle2 = Text("2.Eigenschaften von e", font_size=20).align_to(subtitle1, LEFT).shift(DOWN * 0.5)
-        subtitle3 = Text("3.Der Tröpfelalgorithmus\n    3.1.Python", font_size=20).align_to(subtitle2, LEFT).shift(DOWN)
-        subtitle4 = Text("4.Zusammenfassung ", font_size=20).align_to(subtitle3, LEFT).shift(DOWN * 1.5)
-        self.play(FadeIn(subtitle1), FadeIn(subtitle2), FadeIn(subtitle3), FadeIn(subtitle4))
 
-class Naeherungen(Slide):
-    def construct(self):
-        title = Tex("Näherungen").scale(1.5).to_corner(UP)
-        self.play(Write(title), run_time = 1)
-        self.wait(1)
+        # Title
+        title = Text("Gliederung", font_size=30).to_corner(UL)
+        title.set_color_by_gradient(ORANGE, YELLOW)
+        self.play(Write(title))
 
-class Eigenschaften(Slide):
-    def construct(self):
-        title = Tex("Eigenschaften").scale(1.5).to_corner(UP)
-        self.play(Write(title), run_time = 1)
-        self.wait(1)
+        # 1.
+        first_title = Text("1. Eigenschaften von e", font_size=30).next_to(title, DOWN, aligned_edge=LEFT, buff=1)
+        first_point1 = Text("- Die Ziffern von E", font_size=20).next_to(first_title, DOWN, aligned_edge=LEFT, buff=0.4)
+
+        # 2.
+        second_title = Text("2. Näherungen", font_size=30).next_to(first_point1, DOWN, aligned_edge=LEFT, buff=1)
+
+        # 3.
+        third_title = Text("3. Der Tröpfelalgorithmus", font_size=30).next_to(second_title, DOWN,aligned_edge=LEFT, buff=1)
+        third_point1 = Text("- Der Algorithmus erklärt", font_size=20).next_to(third_title, DOWN, aligned_edge=LEFT, buff=0.4)
+        third_point2 = Text("- Python", font_size=20).next_to(third_point1, DOWN, aligned_edge=LEFT, buff=0.4)
+
+        self.play(Write(first_title), Write(first_point1), Write(second_title), Write(third_title), Write(third_point1), Write(third_point2))
+
+
+class Eigenschaften:
+    def constrict(self):
+        # Title
+        title = Text("Eigenschaften", font_size=30).to_corner(UL)
+        title.set_color_by_gradient(ORANGE, YELLOW)
+        self.play(Write(title))
+
+class Naeherungen:
+    def constrict(self):
+        # Title
+        title = Text("Näherungen", font_size=30).to_corner(UL)
+        title.set_color_by_gradient(ORANGE, YELLOW)
+        self.play(Write(title))
 
 class Tropf(Slide):
     def construct(self):
         title = Tex("Der Tröfelalgorithmus").scale(1.5).to_corner(UP)
         self.play(Write(title), run_time = 1)
         self.wait(1)
-        table = Tex(r"""
-        \def\arraystretch{1.2}
-\begin{tabular}{l|l|l|l|l}
-  & 2 & 3 & 4 & 5 \\ \hline
-2 & 1 & 1 & 1 & 1 \\
-  &   &   &   &   \\
-  &   &   &   &  
-\end{tabular}""")
-                       
-        
+        table = Table([[" ","2","3","4","5"],["2","1","1","1","1"],["7","0","1","0","0"],["1","1","1","0","0"]], include_outer_lines=True)
         self.play(FadeIn(table))
-        self.next_slide()
-        self.play(ReplacementTransform(table[0][17], Tex(r"10").align_to(table[0][17], UL)))
         self.wait()
 
 

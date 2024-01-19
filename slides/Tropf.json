@@ -1,14 +1,8 @@
 {
   "slides": [
     {
-      "file": "slides/files/Tropf/e5745da814963c2d38b2a99c0a3174045211dbe847946dd63597d42c53c425a3.mp4",
-      "rev_file": "slides/files/Tropf/e5745da814963c2d38b2a99c0a3174045211dbe847946dd63597d42c53c425a3_reversed.mp4",
-      "loop": false,
-      "auto_next": false
-    },
-    {
-      "file": "slides/files/Tropf/f19312be909417455d260d27a131385f7eaeea1223b211c05ff65a7861ab5eaa.mp4",
-      "rev_file": "slides/files/Tropf/f19312be909417455d260d27a131385f7eaeea1223b211c05ff65a7861ab5eaa_reversed.mp4",
+      "file": "slides/files/Tropf/5c82c2f737ad57c38782988e5fd8eb6ac73dfade92e4614bb1cd9682829bc98a.mp4",
+      "rev_file": "slides/files/Tropf/5c82c2f737ad57c38782988e5fd8eb6ac73dfade92e4614bb1cd9682829bc98a_reversed.mp4",
       "loop": false,
       "auto_next": false
     }

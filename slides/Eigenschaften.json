@@ -1,0 +1,15 @@
+{
+  "slides": [
+    {
+      "file": "slides/files/Eigenschaften/3561abaa6d896af26fa07bbb18045f476ee4cf6cc6016dffcee4b40219ae180b.mp4",
+      "rev_file": "slides/files/Eigenschaften/3561abaa6d896af26fa07bbb18045f476ee4cf6cc6016dffcee4b40219ae180b_reversed.mp4",
+      "loop": false,
+      "auto_next": false
+    }
+  ],
+  "resolution": [
+    1920,
+    1080
+  ],
+  "background_color": "black"
+}

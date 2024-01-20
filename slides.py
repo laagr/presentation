@@ -115,10 +115,10 @@ class Tropf(Slide):
 
 class Python(Slide):
     def construct(self):
-        title = Tex("Python").scale(1.5).to_corner(UP)
-        self.play(Write(title), run_time = 1)
-        self.next_slide()
-
+        # Title
+        title = Text("Python", font_size=30).to_corner(UL)
+        title.set_color_by_gradient(ORANGE, YELLOW)
+        self.play(Write(title))
         code = Code(
         code="""
     # Variabeln
@@ -168,6 +168,19 @@ class Python(Slide):
         self.next_slide()
         self.play(Transform(code, less_code))
         
+class Eigenschaften(Slide):
+    def construct(self):
+        # Title
+        title = Text("Eigenschaften", font_size=30).to_corner(UL)
+        title.set_color_by_gradient(ORANGE, YELLOW)
+        self.play(Write(title))
+        
+class Naeherungen(Slide):
+    def construct(self):
+        # Title
+        title = Text("Näherungen", font_size=30).to_corner(UL)
+        title.set_color_by_gradient(ORANGE, YELLOW)
+        self.play(Write(title))
 
 class WithTeX(Slide):
     def construct(self):

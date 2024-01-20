@@ -60,13 +60,58 @@ class Naeherungen:
 
 class Tropf(Slide):
     def construct(self):
-        title = Tex("Der Tröfelalgorithmus").scale(1.5).to_corner(UP)
-        self.play(Write(title), run_time = 1)
-        self.wait(1)
-        table = Table([[" ","2","3","4","5"],["2","1","1","1","1"],["7","0","1","0","0"],["1","1","1","0","0"]], include_outer_lines=True)
-        self.play(FadeIn(table))
-        self.wait()
+        # Title
+        title = Text("Der Tröpfelalgorithmus", font_size=30).to_corner(UL)
+        title.set_color_by_gradient(ORANGE, YELLOW)
+        self.play(Write(title))
 
+        table = Table([[" ","2","3","4","5"],["2","1","1","1","1"],["7","0","1","0","0"],["1","1","1","0","0"]], include_outer_lines=True).next_to(title, DOWN, aligned_edge=LEFT)
+        entries = table.get_entries()
+        n = 0
+        for item in entries:
+            if n > 8:
+              item.set_color(BLACK)  
+            n = n + 1
+        self.play(FadeIn(table))
+        self.next_slide()
+        
+        highlight1 = table.get_cell((2,5), color=RED)
+        highlight2 = table.get_cell((1,5), color=RED)
+        highitem = table.get_entries((1,9))
+
+        self.play(FadeIn(highlight1), FadeIn(highlight2))
+        self.play(Transform(highitem, Text("10").move_to(highitem)))
+        self.next_slide()
+
+        clone1 = Text("%  5  =  ")
+        clone2 = Text("//  5  =  ")
+        ans1 = Text("0").set_color(BLACK)
+        ans2 = Text("2").set_color(BLACK)
+        a = highitem.copy()
+
+        equation1 = VGroup(highitem.copy(), clone1, ans1)
+        equation2 = VGroup(a, clone2, ans2)
+
+        equation1.arrange(RIGHT, buff=0.4)
+        equation1.next_to(table, RIGHT, buff=1)
+        equation2.arrange(RIGHT, buff=0.4)
+        equation2.next_to(equation1, DOWN, aligned_edge=LEFT, buff=1)
+        
+        self.play(Write(equation1), Write(equation2))
+        self.play(FadeIn(ans1.set_color(YELLOW)), FadeIn(ans2.set_color(BLUE)))
+        self.next_slide()
+        self.play(Transform(ans1, table.get_entries((1,14)).copy().set_color(WHITE)))
+        table.get_entries((1,14)).set_color(WHITE)
+        o = table.get_entries((1,8))
+        self.next_slide()
+        self.play(Transform(o, Text("10").move_to(o)))
+        self.wait()
+        self.play(Transform(ans2, Text("12").move_to(o)), FadeOut(o))
+        self.next_slide()
+        self.play(FadeOut(highlight1),FadeOut(highlight2),FadeOut(equation1),FadeOut(clone2), FadeOut(a), Transform(ans2, Text("1").move_to(o)), Transform(table.get_entries((1,9)), Text("1").move_to(table.get_entries((1,9)))))
+        self.play(Write(table.get_rows()[2].copy().set_color(WHITE), reverse=True, remover=False))
+        table.get_rows()[3].set_color(WHITE)
+        self.play(Write(table.get_rows()[3], reverse=True, remover=False))
 
 class Python(Slide):
     def construct(self):

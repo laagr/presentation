@@ -6,7 +6,7 @@ class Titel(Slide):
         title = Text("Die Eulersche Zahl", font_size=40)
         title.set_color_by_gradient(ORANGE, YELLOW)
         subtitle = Text("Richard Laag", font_size=20).next_to(title, DOWN)
-        icon = SVGMobject(f"~/link.svg").next_to(title, DOWN * 3 + LEFT)
+        icon = SVGMobject(f"~/presentation/link.svg").next_to(title, DOWN * 3 + LEFT)
         link = Text("https://laagr.github.io/presentation", font_size = 20).set_color(BLUE).next_to(icon, RIGHT)
 
         self.play(Write(title), Write(subtitle))

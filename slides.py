@@ -44,12 +44,29 @@ class Gliederung(Slide):
 
         self.play(Write(first_title), Write(first_point1), Write(second_title), Write(second_point1), Write(third_title), Write(third_point1), Write(third_point2))
 
-class Naeherungen:
-    def constrict(self):
+class Naeherungen(Slide):
+    def construct(self):
         # Title
         title = Text("Näherungen", font_size=30).to_corner(UL)
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
+
+        taylor_series = MathTex(
+            "e^x", "=", "1", "+", "x", "+", "\\frac{x^2}{2!}", "+", "\\frac{x^3}{3!}", "+", "\\cdots"
+        )
+
+        e_nae = MathTex(
+            "e", "=", "1", "+", "1", "+", "\\frac{1}{1 \\times 2}", "+", "\\frac{1}{1 \\times 2 \\times 3}", "+", "\\cdots"
+        )
+
+        e = MathTex("e", "=", "2.7182", "\\cdots")
+
+        self.play(Write(taylor_series))
+        self.next_slide()
+        self.play(Transform(taylor_series, e_nae))
+        self.next_slide()
+        self.play(Transform(taylor_series, e))
+        self.wait()
 
 class Tropf(Slide):
     def construct(self):

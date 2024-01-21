@@ -6,7 +6,7 @@ class Titel(Slide):
         title = Text("Die Eulersche Zahl", font_size=40)
         title.set_color_by_gradient(ORANGE, YELLOW)
         subtitle = Text("Richard Laag", font_size=20).next_to(title, DOWN)
-        icon = SVGMobject(f"link.svg").next_to(title, DOWN * 3 + LEFT)
+        icon = SVGMobject(f"link.svg").next_to(title, DOWN * 3).shift(LEFT * 0.5)
         link = Text("https://laagr.github.io/presentation", font_size = 20).set_color(BLUE).next_to(icon, RIGHT)
 
         self.play(Write(title), Write(subtitle))
@@ -19,7 +19,7 @@ class Intro(Slide):
         e_tex.generate_target()
         e_tex.target.shift(RIGHT * 8 - e_tex.get_right())
 
-        self.play(MoveToTarget(e_tex), run_time=30, rate_func=rate_functions.ease_in_out_sine)
+        self.play(MoveToTarget(e_tex), run_time=35, rate_func=rate_functions.ease_in_out_sine)
 
 class Gliederung(Slide):
     def construct(self):
@@ -30,18 +30,19 @@ class Gliederung(Slide):
         self.play(Write(title))
 
         # 1.
-        first_title = Text("1. Eigenschaften von e", font_size=30).next_to(title, DOWN, aligned_edge=LEFT, buff=1)
-        first_point1 = Text("- Die Ziffern von E", font_size=20).next_to(first_title, DOWN, aligned_edge=LEFT, buff=0.4)
+        first_title = Text("1. Eigenschaften von e", font_size=30).next_to(title, DOWN, aligned_edge=LEFT, buff=0.8)
+        first_point1 = Text("- Die Ziffern von e", font_size=20).next_to(first_title, DOWN, aligned_edge=LEFT, buff=0.4)
 
         # 2.
-        second_title = Text("2. Näherungen", font_size=30).next_to(first_point1, DOWN, aligned_edge=LEFT, buff=1)
+        second_title = Text("2. Näherungen", font_size=30).next_to(first_point1, DOWN, aligned_edge=LEFT, buff=0.8)
+        second_point1 = Text("- e als Summe", font_size=20).next_to(second_title, DOWN, aligned_edge=LEFT, buff=0.4)
 
         # 3.
-        third_title = Text("3. Der Tröpfelalgorithmus", font_size=30).next_to(second_title, DOWN,aligned_edge=LEFT, buff=1)
+        third_title = Text("3. Der Tröpfelalgorithmus", font_size=30).next_to(second_point1, DOWN,aligned_edge=LEFT, buff=0.8)
         third_point1 = Text("- Der Algorithmus erklärt", font_size=20).next_to(third_title, DOWN, aligned_edge=LEFT, buff=0.4)
         third_point2 = Text("- Python", font_size=20).next_to(third_point1, DOWN, aligned_edge=LEFT, buff=0.4)
 
-        self.play(Write(first_title), Write(first_point1), Write(second_title), Write(third_title), Write(third_point1), Write(third_point2))
+        self.play(Write(first_title), Write(first_point1), Write(second_title), Write(second_point1), Write(third_title), Write(third_point1), Write(third_point2))
 
 
 class Eigenschaften:
@@ -72,7 +73,7 @@ class Tropf(Slide):
             if n > 8:
               item.set_color(BLACK)  
             n = n + 1
-        self.play(FadeIn(table))
+        self.play(Create(table))
         self.next_slide()
         
         highlight1 = table.get_cell((2,5), color=RED)
@@ -119,39 +120,9 @@ class Python(Slide):
         title = Text("Python", font_size=30).to_corner(UL)
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
+
         code = Code(
-        code="""
-    # Variabeln
-    x = 0
-    a = [0,2]
-    n = smallest_factn_k_digits(precision)
-    while n: 
-        a.append(1)
-        n = n - 1
-    i = a.__len__()
-    out = ""
-    file1 = open("output-tropf.txt", "w")
-
-    # Loop
-    while i > 0:
-        n = i 
-        i = i - 1
-        while n > 1:
-            n = n - 1
-            a[n] = x % n
-            x = 10 * a[n - 1] + x // n
-        out = out + str(x)
-
-    file1.write(out)
-    file1.close()
-
-""",
-                    language ="python",
-                )
-
-        less_code = Code(
         code ="""
-    # Loop
     while i > 0:
         n = i 
         i = i - 1
@@ -164,9 +135,8 @@ class Python(Slide):
                     language ="python",
                 )
 
-        self.wipe(title, code)
-        self.next_slide()
-        self.play(Transform(code, less_code))
+        self.play(Create(code))
+        self.wait()
         
 class Eigenschaften(Slide):
     def construct(self):
@@ -174,6 +144,15 @@ class Eigenschaften(Slide):
         title = Text("Eigenschaften", font_size=30).to_corner(UL)
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
+        liste = VGroup(
+            Text("- e ist irrational", font_size=20),
+            Text("- e ist eine normale Zahl", font_size=20),
+            Text("-> alle Ziffern sind gleichmäßig verteilt", font_size=20),
+            Text("- absolut normal = normal in allen Basen ab 2", font_size=20),
+            Text("- die funktion e^x ist ihre eigene Ableitung", font_size=20)
+                )
+        liste.arrange(DOWN, aligned_edge=LEFT).to_edge(LEFT)
+        self.play(Write(liste))
         
 class Naeherungen(Slide):
     def construct(self):
@@ -181,25 +160,3 @@ class Naeherungen(Slide):
         title = Text("Näherungen", font_size=30).to_corner(UL)
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
-
-class WithTeX(Slide):
-    def construct(self):
-        tex, text = VGroup(
-            Tex(r"You can also use \TeX, e.g., $\cos\theta=1$"),
-            Text("which does not render like plain text"),
-        ).arrange(DOWN)
-
-        self.play(FadeIn(tex))
-        self.next_slide()
-
-        self.play(FadeIn(text, shift=DOWN))
-
-
-class Outro(Slide):
-    def construct(self):
-        learn_more = VGroup(
-            Text("Learn more about Manim Slides:"),
-            Text("https://manim-slides.eertmans.be"),
-        ).arrange(DOWN)
-
-        self.play(FadeIn(learn_more))

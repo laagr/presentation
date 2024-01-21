@@ -1,20 +1,8 @@
 {
   "slides": [
     {
-      "file": "slides/files/Python/6dbafae9d543ed13f08a554cb324b52f41955d346cb59c0f054e047ece3a4538.mp4",
-      "rev_file": "slides/files/Python/6dbafae9d543ed13f08a554cb324b52f41955d346cb59c0f054e047ece3a4538_reversed.mp4",
-      "loop": false,
-      "auto_next": false
-    },
-    {
-      "file": "slides/files/Python/5f1ac55a4538eca2dfd38af4415c0638347a5cfb116df4428a53cbdcff075ba1.mp4",
-      "rev_file": "slides/files/Python/5f1ac55a4538eca2dfd38af4415c0638347a5cfb116df4428a53cbdcff075ba1_reversed.mp4",
-      "loop": false,
-      "auto_next": false
-    },
-    {
-      "file": "slides/files/Python/ec12117786762cf5098f88dfde986c1eb4fcdfcaeaaf0ba6155c796d9e7902d0.mp4",
-      "rev_file": "slides/files/Python/ec12117786762cf5098f88dfde986c1eb4fcdfcaeaaf0ba6155c796d9e7902d0_reversed.mp4",
+      "file": "slides/files/Python/871691760e68ad07976e2a4264af6cf30798c8fc39fd8751c149cf3d76615c6f.mp4",
+      "rev_file": "slides/files/Python/871691760e68ad07976e2a4264af6cf30798c8fc39fd8751c149cf3d76615c6f_reversed.mp4",
       "loop": false,
       "auto_next": false
     }

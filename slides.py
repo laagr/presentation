@@ -44,14 +44,6 @@ class Gliederung(Slide):
 
         self.play(Write(first_title), Write(first_point1), Write(second_title), Write(second_point1), Write(third_title), Write(third_point1), Write(third_point2))
 
-
-class Eigenschaften:
-    def constrict(self):
-        # Title
-        title = Text("Eigenschaften", font_size=30).to_corner(UL)
-        title.set_color_by_gradient(ORANGE, YELLOW)
-        self.play(Write(title))
-
 class Naeherungen:
     def constrict(self):
         # Title
@@ -179,9 +171,3 @@ class Eigenschaften(Slide):
         bar.add(y_axis)
         return bars
 
-class Naeherungen(Slide):
-    def construct(self):
-        # Title
-        title = Text("Näherungen", font_size=30).to_corner(UL)
-        title.set_color_by_gradient(ORANGE, YELLOW)
-        self.play(Write(title))

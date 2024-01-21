@@ -100,15 +100,21 @@ class Tropf(Slide):
 
         self.play(Write(equation1), Write(equation2))
         self.play(FadeIn(ans1.set_color(YELLOW)), FadeIn(ans2.set_color(BLUE)))
+
         self.next_slide()
+
         self.play(Transform(ans1, table.get_entries((1,14)).copy().set_color(WHITE)))
         table.get_entries((1,14)).set_color(WHITE)
         o = table.get_entries((1,8))
+
         self.next_slide()
+
         self.play(Transform(o, Text("10").move_to(o)))
         self.wait()
         self.play(Transform(ans2, Text("12").move_to(o)), FadeOut(o))
+
         self.next_slide()
+
         self.play(FadeOut(highlight1),FadeOut(highlight2),FadeOut(equation1),FadeOut(clone2), FadeOut(a), Transform(ans2, Text("1").move_to(o)), Transform(table.get_entries((1,9)), Text("1").move_to(table.get_entries((1,9)))))
         self.play(Write(table.get_rows()[2].copy().set_color(WHITE), reverse=True, remover=False))
         table.get_rows()[3].set_color(WHITE)

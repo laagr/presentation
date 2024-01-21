@@ -71,11 +71,11 @@ class Tropf(Slide):
         n = 0
         for item in entries:
             if n > 8:
-              item.set_color(BLACK)  
+                item.set_color(BLACK)  
             n = n + 1
         self.play(Create(table))
         self.next_slide()
-        
+
         highlight1 = table.get_cell((2,5), color=RED)
         highlight2 = table.get_cell((1,5), color=RED)
         highitem = table.get_entries((1,9))
@@ -97,7 +97,7 @@ class Tropf(Slide):
         equation1.next_to(table, RIGHT, buff=1)
         equation2.arrange(RIGHT, buff=0.4)
         equation2.next_to(equation1, DOWN, aligned_edge=LEFT, buff=1)
-        
+
         self.play(Write(equation1), Write(equation2))
         self.play(FadeIn(ans1.set_color(YELLOW)), FadeIn(ans2.set_color(BLUE)))
         self.next_slide()
@@ -122,7 +122,7 @@ class Python(Slide):
         self.play(Write(title))
 
         code = Code(
-        code ="""
+                code ="""
     while i > 0:
         n = i 
         i = i - 1
@@ -131,13 +131,13 @@ class Python(Slide):
             a[n] = x % n
             x = 10 * a[n - 1] + x // n
         out = out + str(x)
-""",
-                    language ="python",
-                )
+        """,
+        language ="python",
+        )
 
         self.play(Create(code))
         self.wait()
-        
+
 class Eigenschaften(Slide):
     def construct(self):
         # Title
@@ -145,15 +145,34 @@ class Eigenschaften(Slide):
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
         liste = VGroup(
-            Text("- e ist irrational", font_size=20),
-            Text("- e ist eine normale Zahl", font_size=20),
-            Text("-> alle Ziffern sind gleichmäßig verteilt", font_size=20),
-            Text("- absolut normal = normal in allen Basen ab 2", font_size=20),
-            Text("- die funktion e^x ist ihre eigene Ableitung", font_size=20)
+                Text("- e ist irrational", font_size=20),
+                Text("- e ist eine normale Zahl", font_size=20),
+                Text("-> alle Ziffern sind gleichmäßig verteilt", font_size=20),
+                Text("- absolut normal = normal in allen Basen ab 2", font_size=20),
+                Text("- Die Funktion e^x ist ihre eigene Ableitung", font_size=20)
                 )
         liste.arrange(DOWN, aligned_edge=LEFT).to_edge(LEFT)
-        self.play(Write(liste))
-        
+        barchart = self.create_bar_chart()
+        self.play(Write(liste), Create(barchart))
+
+    def create_bar_chart(self):
+        data= [4.04,3.84,3.88,4.36,4,3.4,3.96,3.96,4.12,4.48]
+        bars = VGroup()
+
+        for i, val in enumerate(data):
+            bar = Rectangle(height=val, width=0.4, fill_opacity=0.8, fill_color=BLUE)
+            bar.next_to(ORIGIN, RIGHT * 1.2,aligned_edge=DOWN, buff = 0.3)
+            bar.shift(RIGHT * i * 0.7).shift(DOWN * 2.4)
+            bars.add(bar)
+            bars.add(Text(str(i), font_size=20).next_to(bar, DOWN))
+
+        bars.add(Text("1000 Ziffern von e", font_size=20).to_corner(UR).shift(DOWN).shift(LEFT * 2))
+        y_axis = NumberLine(x_range=[0,125,25],length=5,label_direction=LEFT, include_numbers=True, include_tip=True,rotation=90*DEGREES)
+        y_axis.next_to(bars, LEFT, buff = 0.1).shift(UP * 0.16)
+
+        bar.add(y_axis)
+        return bars
+
 class Naeherungen(Slide):
     def construct(self):
         # Title

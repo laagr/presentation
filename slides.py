@@ -6,7 +6,7 @@ class Titel(Slide):
         title = Text("Die Eulersche Zahl", font_size=40)
         title.set_color_by_gradient(ORANGE, YELLOW)
         subtitle = Text("Richard Laag", font_size=20).next_to(title, DOWN)
-        icon = SVGMobject(f"link.svg").next_to(title, DOWN * 3).shift(LEFT * 0.5)
+        icon = SVGMobject(f"link.svg").next_to(title, DOWN * 3).shift(LEFT)
         link = Text("https://laagr.github.io/presentation", font_size = 20).set_color(BLUE).next_to(icon, RIGHT)
 
         self.play(Write(title), Write(subtitle))
@@ -83,6 +83,7 @@ class Tropf(Slide):
                 item.set_color(BLACK)  
             n = n + 1
         self.play(Create(table))
+        self.wait()
         self.next_slide()
 
         highlight1 = table.get_cell((2,5), color=RED)
@@ -137,16 +138,14 @@ class Python(Slide):
         self.play(Write(title))
 
         code = Code(
-                code ="""
-    while i > 0:
+                code ="""while i > 0:
         n = i 
         i = i - 1
         while n > 1:
             n = n - 1
             a[n] = x % n
             x = 10 * a[n - 1] + x // n
-        out = out + str(x)
-        """,
+        out = out + str(x)""",
         language ="python",
         )
 
@@ -163,8 +162,9 @@ class Eigenschaften(Slide):
                 Text("- e ist irrational", font_size=20),
                 Text("- e ist eine normale Zahl", font_size=20),
                 Text("-> alle Ziffern sind gleichmäßig verteilt", font_size=20),
-                Text("- absolut normal = normal in allen Basen ab 2", font_size=20),
-                Text("- Die Funktion e^x ist ihre eigene Ableitung", font_size=20)
+                Text("- absolut normal", font_size=20),
+                Text("-> normal in allen Basen", font_size=20),
+                Text("- Die Funktion e^x ist eigene Ableitung", font_size=20)
                 )
         liste.arrange(DOWN, aligned_edge=LEFT).to_edge(LEFT)
         barchart = self.create_bar_chart()

@@ -1,0 +1,27 @@
+{
+  "slides": [
+    {
+      "file": "slides/files/Naeherungen/90ebd8404d8ba9b4a7b3c865f504b238f1a9f7ca60731cd7dec6b082e9ba8cdc.mp4",
+      "rev_file": "slides/files/Naeherungen/90ebd8404d8ba9b4a7b3c865f504b238f1a9f7ca60731cd7dec6b082e9ba8cdc_reversed.mp4",
+      "loop": false,
+      "auto_next": false
+    },
+    {
+      "file": "slides/files/Naeherungen/2bc32b6e5490d1facb52b682f4f2955688436ba2f9bc379b7f36be00ba8ffb59.mp4",
+      "rev_file": "slides/files/Naeherungen/2bc32b6e5490d1facb52b682f4f2955688436ba2f9bc379b7f36be00ba8ffb59_reversed.mp4",
+      "loop": false,
+      "auto_next": false
+    },
+    {
+      "file": "slides/files/Naeherungen/4c65189929c85591fc4185abf621bc8294ca3433ad86038ddc05bc0ce0448b63.mp4",
+      "rev_file": "slides/files/Naeherungen/4c65189929c85591fc4185abf621bc8294ca3433ad86038ddc05bc0ce0448b63_reversed.mp4",
+      "loop": false,
+      "auto_next": false
+    }
+  ],
+  "resolution": [
+    1920,
+    1080
+  ],
+  "background_color": "black"
+}

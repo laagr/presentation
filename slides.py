@@ -8,9 +8,10 @@ class Titel(Slide):
         subtitle = Text("Richard Laag", font_size=20).next_to(title, DOWN)
         icon = SVGMobject(f"link.svg").next_to(title, DOWN * 3).shift(LEFT)
         link = Text("https://laagr.github.io/presentation", font_size = 20).set_color(BLUE).next_to(icon, RIGHT)
+        ul = Underline(link)
 
         self.play(Write(title), Write(subtitle))
-        self.play(DrawBorderThenFill(icon), Write(link))
+        self.play(DrawBorderThenFill(icon), Write(link), Write(ul))
 
 class Intro(Slide):
     def construct(self):
@@ -138,9 +139,9 @@ class Python(Slide):
         self.play(Write(title))
 
         code = Code(
-                code ="""while i > 0:
-        n = i 
-        i = i - 1
+                code ="""while precision > 0:
+        n = a.__len__() 
+        precision = precision - 1
         while n > 1:
             n = n - 1
             a[n] = x % n

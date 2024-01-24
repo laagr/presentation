@@ -21,7 +21,7 @@ class Intro(Slide):
         e_tex.generate_target()
         e_tex.target.shift(RIGHT * 8 - e_tex.get_right())
 
-        self.play(MoveToTarget(e_tex), run_time=35, rate_func=rate_functions.ease_in_out_sine)
+        self.play(MoveToTarget(e_tex), run_time=30, rate_func=rate_functions.ease_in_out_sine)
 
 class Gliederung(Slide):
     def construct(self):
@@ -31,7 +31,11 @@ class Gliederung(Slide):
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
         
-        #https://upload.wikimedia.org/wikipedia/commons/d/d7/Leonhard_Euler.jpg
+        euler = ImageMobject("Leonhard_Euler.png")
+        euler.to_edge(RIGHT).shift(LEFT * 0.5)
+
+        quelle = Text("wikimedia.org/wikipedia/commons/d/d7/Leonhard_Euler.jpg",font_size=12)
+        quelle.next_to(euler, DOWN)
 
         # 1.
         first_title = Text("1. Eigenschaften von e", font_size=30).next_to(title, DOWN, aligned_edge=LEFT, buff=0.8)
@@ -39,14 +43,15 @@ class Gliederung(Slide):
 
         # 2.
         second_title = Text("2. Näherungen", font_size=30).next_to(first_point1, DOWN, aligned_edge=LEFT, buff=0.8)
-        second_point1 = Text("- e als Summe, Kettenbruch ...", font_size=20).next_to(second_title, DOWN, aligned_edge=LEFT, buff=0.4)
+        second_point1 = Text("- e als Limes, Summe und Kettenbruch", font_size=20).next_to(second_title, DOWN, aligned_edge=LEFT, buff=0.4)
 
         # 3.
         third_title = Text("3. Der Tröpfelalgorithmus", font_size=30).next_to(second_point1, DOWN,aligned_edge=LEFT, buff=0.8)
         third_point1 = Text("- Erklärung des Algorithmus", font_size=20).next_to(third_title, DOWN, aligned_edge=LEFT, buff=0.4)
         third_point2 = Text("- Python", font_size=20).next_to(third_point1, DOWN, aligned_edge=LEFT, buff=0.4)
 
-        self.play(Write(first_title), Write(first_point1), Write(second_title), Write(second_point1), Write(third_title), Write(third_point1), Write(third_point2))
+        self.play(Write(first_title), Write(first_point1), Write(second_title), Write(second_point1), Write(third_title), Write(third_point1), Write(third_point2), Write(quelle), FadeIn(euler))
+        self.wait()
 
 class Naeherungen(Slide):
     def construct(self):
@@ -54,6 +59,28 @@ class Naeherungen(Slide):
         title = Text("Näherungen", font_size=30).to_corner(UL)
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
+
+        lim = MathTex("e", "= \\lim_{n \\to \\infty}", "\\left(1 + \\frac{1}{n}\\right)^n")
+        lim_ex = VGroup(
+                MathTex("\\left(1 + \\frac{1}{10}\\right)^{10}"),
+                MathTex("\\left(1 + \\frac{1}{100}\\right)^{100}"),
+                MathTex("\\left(1 + \\frac{1}{1000}\\right)^{1000}"))
+
+        lim_ex_sol = VGroup(
+                MathTex("\\left(1 + \\frac{1}{10}\\right)^{10}", "= 2.59\\dots"),
+                MathTex("\\left(1 + \\frac{1}{100}\\right)^{100}", "= 2,704\\dots"),
+                MathTex("\\left(1 + \\frac{1}{1000}\\right)^{1000}", "= 2,7169\\dots"))
+
+        lim_ex.arrange(DOWN, aligned_edge=LEFT)
+        lim_ex_sol.arrange(DOWN, aligned_edge=LEFT)
+
+        self.play(Write(lim))
+        self.next_slide()
+        self.play(Transform(lim, lim_ex))
+        self.next_slide()
+        self.play(Transform(lim, lim_ex_sol))
+        self.next_slide()
+        self.play(FadeOut(lim))
 
         taylor_series = MathTex(
             "e^x", "=", "1", "+", "x", "+", "\\frac{x^2}{2!}", "+", "\\frac{x^3}{3!}", "+", "\\cdots"
@@ -63,13 +90,14 @@ class Naeherungen(Slide):
             "e", "=", "1", "+", "1", "+", "\\frac{1}{1 \\times 2}", "+", "\\frac{1}{1 \\times 2 \\times 3}", "+", "\\cdots"
         )
 
-        e = MathTex("e", "=", "2.7182", "\\cdots")
+        e = MathTex("e", "=", "2.71", "\\cdots")
 
         self.play(Write(taylor_series))
         self.next_slide()
         self.play(Transform(taylor_series, e_nae))
         self.next_slide()
         self.play(Transform(taylor_series, e))
+
         self.wait()
 
 class Tropf(Slide):

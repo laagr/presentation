@@ -31,7 +31,7 @@ class Gliederung(Slide):
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
         
-        euler = ImageMobject("Leonhard_Euler.png")
+        euler = ImageMobject(f"Leonhard_Euler.png")
         euler.to_edge(RIGHT).shift(LEFT * 0.5)
 
         quelle = Text("wikimedia.org/wikipedia/commons/d/d7/Leonhard_Euler.jpg",font_size=12)

@@ -141,19 +141,32 @@ class Python(Slide):
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
 
+        variabeln = VGroup(
+                Tex("a = [0, 2, 1, 1, 1, \\dots]", font_size=30), 
+                Text("precision = anzahl an Nachkommastellen", font_size=20),
+                Tex("x = 10", font_size=30), 
+                )
+
+        variabeln.arrange(DOWN,aligned_edge=LEFT)
+
         code = Code(
                 code ="""while precision > 0:
         n = a.__len__() 
         precision = precision - 1
+
         while n > 1:
             n = n - 1
             a[n] = x % n
             x = 10 * a[n - 1] + x // n
+
         out = out + str(x)""",
         language ="python",
         )
 
-        self.play(Create(code))
+        code.shift(DOWN * 1.5)
+        variabeln.next_to(code, UP)
+
+        self.play(Create(code), Write(variabeln))
         self.wait()
 
 class Eigenschaften(Slide):

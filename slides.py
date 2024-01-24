@@ -1,5 +1,6 @@
 from manim import *
 from manim_slides import Slide
+import numpy as np
 
 class Titel(Slide):
     def construct(self):
@@ -29,6 +30,8 @@ class Gliederung(Slide):
         title = Text("Gliederung", font_size=30).to_corner(UL)
         title.set_color_by_gradient(ORANGE, YELLOW)
         self.play(Write(title))
+        
+        #https://upload.wikimedia.org/wikipedia/commons/d/d7/Leonhard_Euler.jpg
 
         # 1.
         first_title = Text("1. Eigenschaften von e", font_size=30).next_to(title, DOWN, aligned_edge=LEFT, buff=0.8)
@@ -36,11 +39,11 @@ class Gliederung(Slide):
 
         # 2.
         second_title = Text("2. Näherungen", font_size=30).next_to(first_point1, DOWN, aligned_edge=LEFT, buff=0.8)
-        second_point1 = Text("- e als Summe", font_size=20).next_to(second_title, DOWN, aligned_edge=LEFT, buff=0.4)
+        second_point1 = Text("- e als Summe, Kettenbruch ...", font_size=20).next_to(second_title, DOWN, aligned_edge=LEFT, buff=0.4)
 
         # 3.
         third_title = Text("3. Der Tröpfelalgorithmus", font_size=30).next_to(second_point1, DOWN,aligned_edge=LEFT, buff=0.8)
-        third_point1 = Text("- Der Algorithmus erklärt", font_size=20).next_to(third_title, DOWN, aligned_edge=LEFT, buff=0.4)
+        third_point1 = Text("- Erklärung des Algorithmus", font_size=20).next_to(third_title, DOWN, aligned_edge=LEFT, buff=0.4)
         third_point2 = Text("- Python", font_size=20).next_to(third_point1, DOWN, aligned_edge=LEFT, buff=0.4)
 
         self.play(Write(first_title), Write(first_point1), Write(second_title), Write(second_point1), Write(third_title), Write(third_point1), Write(third_point2))
@@ -165,11 +168,56 @@ class Eigenschaften(Slide):
                 Text("-> alle Ziffern sind gleichmäßig verteilt", font_size=20),
                 Text("- absolut normal", font_size=20),
                 Text("-> normal in allen Basen", font_size=20),
-                Text("- Die Funktion e^x ist eigene Ableitung", font_size=20)
+                Text("- Die Funktion eˣ ist eigene Ableitung", font_size=20)
                 )
+
         liste.arrange(DOWN, aligned_edge=LEFT).to_edge(LEFT)
         barchart = self.create_bar_chart()
-        self.play(Write(liste), Create(barchart))
+
+        axis = Axes(
+                x_range=[0,1,1],
+                y_range=[0,125,25],
+                axis_config={"include_numbers": True},
+                x_length=10,
+                y_length=5,
+        )
+
+        axis.next_to(barchart, LEFT, aligned_edge=LEFT, buff = 0.17).shift(UP * 0.15).shift(RIGHT * 4.6)
+
+        self.play(Write(liste), Create(barchart), Create(axis))
+        self.next_slide()
+        self.play(FadeOut(liste), FadeOut(barchart), FadeOut(axis))
+
+        axes_left = Axes(
+            x_range=[0, 3, 1],
+            y_range=[0, 20, 4],
+            axis_config={"color": BLUE, "include_numbers": True},
+            x_length=5
+        )
+        axes_left.next_to(title, DOWN * 1.4, aligned_edge=LEFT)
+        axes_right = Axes(
+            x_range=[0, 3, 1],
+            y_range=[0, 20, 4],
+            axis_config={"color": RED, "include_numbers": True},
+            x_length=5
+        )
+        axes_right.next_to(axes_left, RIGHT)
+        axes_right.to_edge(RIGHT)
+
+        labels_right = axes_right.get_axis_labels(
+            Tex("t in s").scale(0.8), Text("v in m/s").scale(0.5))
+
+        labels_left = axes_left.get_axis_labels(
+            Tex("t in s").scale(0.8), Text("s in m").scale(0.5))
+
+
+        graph_left = axes_left.plot(lambda x: np.exp(x), color=WHITE)
+        graph_right = axes_right.plot(lambda x: np.exp(x), color=WHITE)
+
+        self.wait()
+        self.play(Create(axes_left), Create(axes_right))
+        self.play(Create(graph_left), Create(graph_right))
+        self.play(Write(labels_right), Write(labels_left))
 
     def create_bar_chart(self):
         data= [4.04,3.84,3.88,4.36,4,3.4,3.96,3.96,4.12,4.48]
@@ -180,12 +228,8 @@ class Eigenschaften(Slide):
             bar.next_to(ORIGIN, RIGHT * 1.2,aligned_edge=DOWN, buff = 0.3)
             bar.shift(RIGHT * i * 0.7).shift(DOWN * 2.4)
             bars.add(bar)
-            bars.add(Text(str(i), font_size=20).next_to(bar, DOWN))
+            bars.add(Text(str(i), font_size=20).next_to(bar, DOWN * 0.75))
 
         bars.add(Text("1000 Ziffern von e", font_size=20).to_corner(UR).shift(DOWN).shift(LEFT * 2))
-        y_axis = NumberLine(x_range=[0,125,25],length=5,label_direction=LEFT, include_numbers=True, include_tip=True,rotation=90*DEGREES)
-        y_axis.next_to(bars, LEFT, buff = 0.1).shift(UP * 0.16)
-
-        bar.add(y_axis)
         return bars
 

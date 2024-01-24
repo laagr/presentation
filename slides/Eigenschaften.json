@@ -1,8 +1,14 @@
 {
   "slides": [
     {
-      "file": "slides/files/Eigenschaften/b34150f7b1c496d9bcac85e2ba2982652a8dcceb10638bfda73f45a8efa0e595.mp4",
-      "rev_file": "slides/files/Eigenschaften/b34150f7b1c496d9bcac85e2ba2982652a8dcceb10638bfda73f45a8efa0e595_reversed.mp4",
+      "file": "slides/files/Eigenschaften/e154c0b3d45659cbd15a1f8ed76fe27a63919c20ce3067aa3930b119a167dbff.mp4",
+      "rev_file": "slides/files/Eigenschaften/e154c0b3d45659cbd15a1f8ed76fe27a63919c20ce3067aa3930b119a167dbff_reversed.mp4",
+      "loop": false,
+      "auto_next": false
+    },
+    {
+      "file": "slides/files/Eigenschaften/14caff1168535fd0af65ff678093aa4b5bfd81a18bb10c1262555b638fd7eeba.mp4",
+      "rev_file": "slides/files/Eigenschaften/14caff1168535fd0af65ff678093aa4b5bfd81a18bb10c1262555b638fd7eeba_reversed.mp4",
       "loop": false,
       "auto_next": false
     }

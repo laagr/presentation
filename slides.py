@@ -4,15 +4,14 @@ import numpy as np
 
 class Titel(Slide):
     def construct(self):
-        title = Text("Die Eulersche Zahl", font_size=40)
+        title = Text("Die Eulersche Zahl", font_size=40).shift(UP)
         title.set_color_by_gradient(ORANGE, YELLOW)
         subtitle = Text("Richard Laag", font_size=20).next_to(title, DOWN)
-        icon = SVGMobject(f"link.svg").next_to(title, DOWN * 3).shift(LEFT)
+        icon = SVGMobject(f"link.svg").next_to(title, DOWN * 3).shift(LEFT * 2.5)
         link = Text("https://laagr.github.io/presentation", font_size = 20).set_color(BLUE).next_to(icon, RIGHT)
-        ul = Underline(link)
 
         self.play(Write(title), Write(subtitle))
-        self.play(DrawBorderThenFill(icon), Write(link), Write(ul))
+        self.play(DrawBorderThenFill(icon), Write(link))
 
 class Intro(Slide):
     def construct(self):
@@ -21,7 +20,7 @@ class Intro(Slide):
         e_tex.generate_target()
         e_tex.target.shift(RIGHT * 8 - e_tex.get_right())
 
-        self.play(MoveToTarget(e_tex), run_time=30, rate_func=rate_functions.ease_in_out_sine)
+        self.play(MoveToTarget(e_tex), run_time=35, rate_func=rate_functions.ease_in_out_sine)
 
 class Gliederung(Slide):
     def construct(self):
@@ -32,9 +31,9 @@ class Gliederung(Slide):
         self.play(Write(title))
         
         euler = ImageMobject(f"Leonhard_Euler.png").scale(0.25)
-        euler.to_edge(RIGHT).shift(LEFT * 0.5)
+        euler.to_edge(RIGHT).shift(LEFT)
 
-        quelle = Text("wikimedia.org/wikipedia/commons/d/d7/Leonhard_Euler.jpg",font_size=12)
+        quelle = Text("wikimedia.org/wikipedia/commons/d/d7/Leonhard_Euler.jpg",font_size=12).set_color(BLUE)
         quelle.next_to(euler, DOWN)
 
         # 1.
@@ -97,6 +96,14 @@ class Naeherungen(Slide):
         self.play(Transform(taylor_series, e_nae))
         self.next_slide()
         self.play(Transform(taylor_series, e))
+        self.next_slide()
+        self.play(FadeOut(taylor_series))
+
+        kettenbruch = MathTex("e", "=", "2", "+\\frac{1}{1 + \\frac{1}{2 + \\frac{1}{1 + \\frac{1}{1 + \\frac{1}{4 + \\frac{1}{\\dots}}}}}}"
+)
+        self.play(Write(kettenbruch))
+        self.next_slide()
+        self.play(Transform(kettenbruch, e))
 
         self.wait()
 
@@ -124,7 +131,6 @@ class Tropf(Slide):
 
         self.play(FadeIn(highlight1), FadeIn(highlight2))
         self.play(Transform(highitem, Text("10").move_to(highitem)))
-        self.next_slide()
 
         clone1 = Text("%  5  =  ")
         clone2 = Text("//  5  =  ")
@@ -171,7 +177,7 @@ class Python(Slide):
 
         variabeln = VGroup(
                 Tex("a = [0, 2, 1, 1, 1, \\dots]", font_size=30), 
-                Text("precision = anzahl an Nachkommastellen", font_size=20),
+                Text("precision = Anzahl an Nachkommastellen", font_size=20),
                 Tex("x = 10", font_size=30), 
                 )
 
@@ -185,7 +191,7 @@ class Python(Slide):
         while n > 1:
             n = n - 1
             a[n] = x % n
-            x = 10 * a[n - 1] + x // n
+            x = 10 * a[n - 1] + x // variabeln
 
         out = out + str(x)""",
         language ="python",
@@ -196,6 +202,8 @@ class Python(Slide):
 
         self.play(Create(code), Write(variabeln))
         self.wait()
+        self.next_slide()
+        self.play(FadeOut(title), FadeOut(code), FadeOut(variabeln))
 
 class Eigenschaften(Slide):
     def construct(self):
